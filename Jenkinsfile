@@ -1,10 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        stage ('Build') {
+        stage ('Compile Stage') {
+
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
+                withMaven(maven : 'mvn') {
+                    sh 'mvn clean compile'
+                }
             }
         }
+
+        stage ('Testing Stage') {
+
+            steps {
+                withMaven(maven : 'mvn') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
     }
 }
