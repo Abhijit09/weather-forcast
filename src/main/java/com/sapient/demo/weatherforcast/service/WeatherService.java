@@ -1,11 +1,9 @@
 package com.sapient.demo.weatherforcast.service;
 
-import com.sapient.demo.weatherforcast.dto.WeatherEntry;
 import com.sapient.demo.weatherforcast.dto.WeatherForecast;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
 import java.net.URI;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class WeatherService {
@@ -42,8 +34,6 @@ public class WeatherService {
 
 		weatherForecast.setName(cityName);
 
-
-
 		return weatherForecast;
 	}
 
@@ -51,7 +41,6 @@ public class WeatherService {
 		RequestEntity<?> request = RequestEntity.get(url).accept(MediaType.APPLICATION_JSON).build();
 		ResponseEntity<T> exchange = this.restTemplate.exchange(request, responseType);
 
-		logger.info("hello" + exchange.getBody().toString());
 		return exchange.getBody();
 	}
 
