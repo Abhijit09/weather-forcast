@@ -22,11 +22,10 @@ public class WeatherService {
 
 	private RestTemplate restTemplate;
 
-	public WeatherService(RestTemplateBuilder restTemplateBuilder) {
-		this.restTemplate = restTemplateBuilder.build();
-	}
-
 	public WeatherForecast getWeatherForecast(String cityName) {
+
+		this.restTemplate = new RestTemplateBuilder().build();
+
 		logger.info("Requesting weather forecast for {}", cityName);
 		URI url = new UriTemplate(FORECAST_URL).expand(cityName);
 
