@@ -11,7 +11,7 @@ public class BaseController {
     public ResponseEntity<ErrorResponse> handleError() {
         ErrorResponse errorResponse = new ErrorResponse();
 
-        errorResponse.setMessage("Error while retrieving data");
+        errorResponse.setMessage("Error while retrieving weather data");
         errorResponse.setErrorCode("ERR-001");
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
